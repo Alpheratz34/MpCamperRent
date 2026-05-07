@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre Nosotros — MpCamperRent</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <style>
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-xl); text-align: center; padding: var(--space-3xl) 0; }
+    .stat__number { font-family: var(--font-display); font-size: var(--text-4xl); color: var(--color-accent); }
+    .stat__label { font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: var(--space-xs); }
+    .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-2xl); }
+    .value-card { padding: var(--space-2xl); background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); border-top: 3px solid var(--color-accent); }
+    @media (max-width: 768px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } .values-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav is-scrolled" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="MpCamperRent — Inicio">
+        <img src="assets/logo.svg" alt="MpCamperRent" class="nav__logo__img">
+      </a>
+      <div class="nav__links" id="navLinks">
+        <a href="index.html" class="nav__link">Inicio</a>
+        <a href="vehiculo.html" class="nav__link">Nuestra autocaravana</a>
+        <a href="nosotros.html" class="nav__link active">Nosotros</a>
+        <a href="contacto.html" class="nav__link">Contacto</a>
+        <a href="reserva.html" class="btn btn--accent btn--sm">Reservar</a>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <header style="padding: 140px 0 var(--space-3xl); background: var(--color-bg-alt);">
+    <div class="container">
+      <p class="text-small" style="text-transform: uppercase; letter-spacing: 3px; color: var(--color-accent-dark); font-weight: 600; margin-bottom: var(--space-md);">Nuestra historia</p>
+      <h1 style="font-size: var(--text-4xl); max-width: 650px;">Nacimos para hacer que viajar sea una experiencia, no solo un destino</h1>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container" style="max-width: var(--container-narrow);">
+      <div class="animate-on-scroll">
+        <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed); margin-bottom: var(--space-xl);">
+          MpCamperRent nació de una idea simple: que la verdadera aventura está en el camino, no en el destino. Ponemos a tu disposición nuestra autocaravana totalmente equipada para que solo tengas que preocuparte de disfrutar.
+        </p>
+        <p style="font-size: var(--text-lg); line-height: var(--leading-relaxed);">
+          Cuidamos cada detalle: desde la limpieza impecable hasta el equipamiento completo, pasando por un trato cercano y personal. No somos una gran empresa, somos personas que aman viajar y quieren compartir esa pasión contigo.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <section style="background: var(--color-primary); padding: var(--space-xl) 0;">
+    <div class="container">
+      <div class="stats-grid">
+        <!--
+        <div class="animate-on-scroll"><p class="stat__number">200+</p><p class="stat__label" style="color: rgba(250,247,242,0.6);">Viajes realizados</p></div>
+        -->
+        <div class="animate-on-scroll"><p class="stat__number">1</p><p class="stat__label" style="color: rgba(250,247,242,0.6);">Autocaravana cuidada al máximo</p></div>
+        <div class="animate-on-scroll"><p class="stat__number">24/7</p><p class="stat__label" style="color: rgba(250,247,242,0.6);">Atención al cliente</p></div>
+        <!--
+        <div class="animate-on-scroll"><p class="stat__number">4.9★</p><p class="stat__label" style="color: rgba(250,247,242,0.6);">Valoración media</p></div>
+        -->
+      </div>
+    </div>
+  </section>
+  
+
+  <section class="section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: var(--space-3xl);">
+        <p class="text-small" style="text-transform: uppercase; letter-spacing: 3px; color: var(--color-accent-dark); font-weight: 600; margin-bottom: var(--space-md);">Lo que nos define</p>
+        <h2>Nuestros valores</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-card animate-on-scroll"><h4 style="margin-bottom: var(--space-md);">Libertad</h4><p class="text-small">Creemos que viajar debe ser libre, sin horarios rígidos ni rutas predefinidas. Tú decides el camino.</p></div>
+        <div class="value-card animate-on-scroll"><h4 style="margin-bottom: var(--space-md);">Calidad</h4><p class="text-small">Nuestra autocaravana pasa revisiones periódicas y está equipada con todo lo necesario para garantizar tu confort.</p></div>
+        <div class="value-card animate-on-scroll"><h4 style="margin-bottom: var(--space-md);">Confianza</h4><p class="text-small">Transparencia en precios, pagos seguros y atención 24/7. Tu tranquilidad es nuestra prioridad.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container" style="position: relative; z-index: 1;">
+      <h2>¿Quieres unirte a la aventura?</h2>
+      <p>Reserva nuestra autocaravana y empieza a planear tu próxima escapada.</p>
+      <a href="reserva.html" class="btn btn--accent btn--lg">Reservar ahora</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="flex-direction: column; gap: var(--space-sm); text-align: center;">
+        <p style="font-size: var(--text-sm); color: rgba(250,247,242,0.6);">
+          <a href="tel:+34600140725" style="color: var(--color-accent);">600 14 07 25</a>
+          &nbsp;·&nbsp;
+          <a href="mailto:mpcamperrent@gmail.com" style="color: var(--color-accent);">mpcamperrent@gmail.com</a>
+        </p>
+        <p style="font-size: var(--text-sm); color: rgba(250,247,242,0.6);">
+          <a href="terminos.html" style="color: var(--color-accent);">Términos</a>
+          &nbsp;·&nbsp;
+          <a href="privacidad.html" style="color: var(--color-accent);">Privacidad</a>
+          &nbsp;·&nbsp;
+          <a href="cookies.html" style="color: var(--color-accent);">Cookies</a>
+        </p>
+        <p>&copy; 2026 MpCamperRent. Todos los derechos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reservar — MpCamperRent</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    .flatpickr-day.flatpickr-disabled { background: #fef2f2 !important; color: #fca5a5 !important; text-decoration: line-through; cursor: not-allowed !important; }
+    .flatpickr-input { cursor: pointer; }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <style>
+    .booking-layout { display: grid; grid-template-columns: 1fr 380px; gap: var(--space-3xl); align-items: start; }
+    .step-panel { display: none; }
+    .step-panel.active { display: block; animation: fadeInUp 0.4s ease; }
+    @media (max-width: 768px) { .booking-layout { grid-template-columns: 1fr; } .extras-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="nav is-scrolled" id="nav">
+    <div class="container nav__inner">
+      <a href="index.html" class="nav__logo" aria-label="MpCamperRent — Inicio">
+        <img src="assets/logo.svg" alt="MpCamperRent" class="nav__logo__img">
+      </a>
+      <div class="nav__links" id="navLinks">
+        <a href="index.html" class="nav__link">Inicio</a>
+        <a href="vehiculo.html" class="nav__link">Nuestra autocaravana</a>
+        <a href="nosotros.html" class="nav__link">Nosotros</a>
+        <a href="contacto.html" class="nav__link">Contacto</a>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <header style="padding: 140px 0 var(--space-2xl); background: var(--color-bg-alt);">
+    <div class="container" style="text-align: center;">
+      <h1 style="font-size: var(--text-4xl);">Reserva la McLouis MC4 Slim 331</h1>
+      <p style="margin-top: var(--space-sm); max-width: 500px; margin-left: auto; margin-right: auto;">Rellena los datos paso a paso. Tus datos están protegidos en todo momento.</p>
+    </div>
+  </header>
+
+  <section class="section--sm">
+    <div class="container">
+      <!-- Stepper -->
+      <div class="stepper">
+        <div class="stepper__step active" data-step="1"><div class="stepper__number">1</div><span class="stepper__label">Fechas</span></div>
+        <div class="stepper__line"></div>
+        <div class="stepper__step" data-step="2"><div class="stepper__number">2</div><span class="stepper__label">Datos personales</span></div>
+        <div class="stepper__line"></div>
+        <div class="stepper__step" data-step="3"><div class="stepper__number">3</div><span class="stepper__label">Pago</span></div>
+      </div>
+
+      <div class="booking-layout">
+        <div>
+          <!-- PASO 1: Fechas -->
+          <div class="step-panel active" id="step1">
+            <h3 style="margin-bottom: var(--space-xl);">Elige fechas y lugar de recogida</h3>
+
+            <!-- Mini resumen del vehículo -->
+            <div style="display: flex; align-items: center; gap: var(--space-lg); padding: var(--space-lg); background: var(--color-bg-alt); border-radius: var(--radius-lg); margin-bottom: var(--space-xl);">
+              <img src="https://www.mclouis.com/wp-content/uploads/2024/05/McLouis_MC4_331-020-1536x1025.jpg" alt="McLouis MC4 Slim 331" style="border-radius: var(--radius-md); width: 120px; height: 80px; object-fit: cover;">
+              <div>
+                <p style="font-weight: 600;">McLouis MC4 Slim 331</p>
+                <p style="font-size: var(--text-sm); color: var(--color-text-secondary);">4 personas · Cocina + baño · 5.99m</p>
+                <p style="font-family: var(--font-display); font-size: var(--text-xl); color: var(--color-primary-dark); margin-top: 4px;">139€<span style="font-size: var(--text-sm); font-family: var(--font-body);">/día</span></p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Punto de recogida</label>
+              <div style="display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-md) var(--space-lg); background: var(--color-bg-alt); border-radius: var(--radius-md); border: 1.5px solid var(--color-border);">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span style="font-weight: 600;">Valdemoro, Madrid</span>
+                <span style="font-size: var(--text-xs); color: var(--color-text-light); margin-left: auto;">Único punto de recogida</span>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="bookDateFrom">Fecha de recogida</label>
+                <input type="date" class="form-input" id="bookDateFrom" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="bookDateTo">Fecha de devolución</label>
+                <input type="date" class="form-input" id="bookDateTo" required>
+              </div>
+            </div>
+            <button class="btn btn--primary btn--lg" onclick="goToStep(2)" style="margin-top: var(--space-md);">Continuar →</button>
+          </div>
+
+          <!-- PASO 2: Datos personales -->
+          <div class="step-panel" id="step2">
+            <h3 style="margin-bottom: var(--space-xl);">Tus datos personales</h3>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="bookName">Nombre</label><input type="text" class="form-input" id="bookName" placeholder="Tu nombre" required><p class="form-error">Introduce tu nombre</p></div>
+              <div class="form-group"><label class="form-label" for="bookSurname">Apellidos</label><input type="text" class="form-input" id="bookSurname" placeholder="Tus apellidos" required><p class="form-error">Introduce tus apellidos</p></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="bookEmail">Email</label><input type="email" class="form-input" id="bookEmail" placeholder="tu@email.com" required><p class="form-error">Introduce un email válido</p></div>
+            <div class="form-row">
+              <div class="form-group"><label class="form-label" for="bookPhone">Teléfono</label><input type="tel" class="form-input" id="bookPhone" placeholder="+34 600 000 000" required><p class="form-error">Introduce tu teléfono</p></div>
+              <div class="form-group"><label class="form-label" for="bookDNI">DNI / Pasaporte</label><input type="text" class="form-input" id="bookDNI" placeholder="12345678A" required><p class="form-error">Introduce tu DNI o pasaporte</p></div>
+            </div>
+            <div class="form-group"><label class="form-label" for="bookNotes">Notas adicionales (opcional)</label><textarea class="form-input" id="bookNotes" rows="3" placeholder="Cualquier información extra..."></textarea></div>
+            <div class="form-checkbox" style="margin-bottom: var(--space-lg);">
+              <input type="checkbox" id="bookTerms" required>
+              <label for="bookTerms">Acepto los <a href="terminos.html" target="_blank" rel="noopener" style="color: var(--color-primary); text-decoration: underline;">términos y condiciones</a> y la <a href="privacidad.html" target="_blank" rel="noopener" style="color: var(--color-primary); text-decoration: underline;">política de privacidad</a>.</label>
+            </div>
+            <div style="display: flex; gap: var(--space-md);">
+              <button class="btn btn--outline-dark btn--lg" onclick="goToStep(1)">← Atrás</button>
+              <button class="btn btn--primary btn--lg" onclick="goToStep(3)">Ir al pago →</button>
+            </div>
+          </div>
+
+          <!-- PASO 3: Pago -->
+          <div class="step-panel" id="step3">
+            <h3 style="margin-bottom: var(--space-xl);">Método de pago</h3>
+            <p style="background: rgba(45,122,79,0.08); padding: var(--space-md); border-radius: var(--radius-md); font-size: var(--text-sm); color: var(--color-success); margin-bottom: var(--space-xl); display: flex; align-items: center; gap: var(--space-sm);">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              Conexión segura SSL. Tus datos de pago nunca se almacenan en nuestros servidores.
+            </p>
+            <div style="display: flex; gap: var(--space-md); margin-bottom: var(--space-xl);">
+              <button class="btn btn--primary" id="payCardBtn" onclick="selectPaymentMethod('card')" style="flex: 1;">💳 Tarjeta</button>
+              <button class="btn btn--outline-dark" id="payPaypalBtn" onclick="selectPaymentMethod('paypal')" style="flex: 1;">🅿️ PayPal</button>
+            </div>
+            <div id="cardPaymentForm">
+              <div class="form-group">
+                <label class="form-label">Número de tarjeta</label>
+                <div id="card-element" class="form-input" style="padding-top: 16px;">
+                  <input type="text" placeholder="4242 4242 4242 4242" class="form-input" id="devCardNumber" maxlength="23" autocomplete="cc-number" inputmode="numeric" style="border: none; padding: 0; margin: 0; width: 100%;">
+                </div>
+                <p class="form-help" style="font-size: var(--text-xs); color: var(--color-text-light); margin-top: 4px;">Aceptamos Visa, Mastercard, Amex y Discover.</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group" id="devCardExpiryGroup">
+                  <label class="form-label">Caducidad</label>
+                  <input type="text" class="form-input" id="devCardExpiry" placeholder="MM/AA" maxlength="5" autocomplete="cc-exp" inputmode="numeric">
+                </div>
+                <div class="form-group" id="devCardCVCGroup">
+                  <label class="form-label">CVC</label>
+                  <input type="text" class="form-input" id="devCardCVC" placeholder="123" maxlength="4" autocomplete="cc-csc" inputmode="numeric">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nombre en la tarjeta</label>
+                <input type="text" class="form-input" id="cardName" placeholder="Nombre completo del titular" autocomplete="cc-name">
+              </div>
+            </div>
+            <div id="paypalPaymentForm" style="display: none;">
+              <div style="text-align: center; padding: var(--space-2xl); border: 2px dashed var(--color-border); border-radius: var(--radius-lg);">
+                <p style="font-size: var(--text-lg); font-weight: 600; margin-bottom: var(--space-md);">PayPal</p>
+                <p class="text-small" style="margin-bottom: var(--space-lg);">Serás redirigido a PayPal para completar el pago de forma segura. No es necesario tener cuenta — también puedes pagar con tarjeta como invitado.</p>
+                <div id="paypal-button-container">
+                  <button class="btn btn--accent btn--lg btn--full" id="paypalMockBtn" type="button">Pagar con PayPal</button>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: var(--space-md); margin-top: var(--space-xl);">
+              <button class="btn btn--outline-dark btn--lg" onclick="goToStep(2)">← Atrás</button>
+              <button class="btn btn--accent btn--lg" id="confirmPayBtn" onclick="processPayment()" style="flex: 1;">Confirmar y pagar</button>
+            </div>
+          </div>
+
+          <!-- Confirmación -->
+          <div class="step-panel" id="stepConfirm">
+            <div style="text-align: center; padding: var(--space-3xl) 0;">
+              <div style="width: 80px; height: 80px; background: rgba(45,122,79,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xl);">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2D7A4F" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <h2 style="margin-bottom: var(--space-md);">¡Reserva confirmada!</h2>
+              <p style="font-size: var(--text-lg); max-width: 500px; margin: 0 auto var(--space-lg);">Hemos enviado los detalles de tu reserva a tu email. Te esperamos en el punto de recogida.</p>
+              <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-sm);">Tu número de referencia</p>
+              <p style="background: var(--color-bg-alt); display: inline-block; padding: var(--space-md) var(--space-xl); border-radius: var(--radius-md); font-family: var(--font-mono); font-size: var(--text-lg); color: var(--color-primary); margin-bottom: var(--space-xl);" id="bookingRef">MP-2026-XXXXX</p>
+              <div style="max-width: 420px; margin: 0 auto var(--space-xl); padding: var(--space-lg); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); text-align: left; font-size: var(--text-sm);">
+                <p style="margin-bottom: 6px;"><strong>Punto de recogida:</strong> Valdemoro, Madrid</p>
+                <p style="margin-bottom: 6px;"><strong>Vehículo:</strong> McLouis MC4 Slim 331 (170 CV)</p>
+                <p style="color: var(--color-text-light); font-size: var(--text-xs); margin-top: var(--space-sm);">
+                  Recibirás un email con los datos exactos del lugar de recogida y un teléfono de contacto para el día de la entrega.
+                </p>
+              </div>
+              <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="btn btn--primary btn--lg">Volver al inicio</a>
+                <a href="contacto.html" class="btn btn--outline-dark btn--lg">Contactar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="price-summary" id="priceSummary">
+            <h4 style="margin-bottom: var(--space-lg);">Resumen</h4>
+            <div id="summaryContent">
+              <p style="color: var(--color-text-light); font-size: var(--text-sm);">Selecciona las fechas para ver el resumen.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container"><div class="footer__bottom" style="flex-direction: column; gap: var(--space-sm); text-align: center;">
+      <p style="font-size: var(--text-sm); color: rgba(250,247,242,0.6);">
+        <a href="terminos.html" style="color: var(--color-accent);">Términos</a>
+        &nbsp;·&nbsp;
+        <a href="privacidad.html" style="color: var(--color-accent);">Privacidad</a>
+        &nbsp;·&nbsp;
+        <a href="cookies.html" style="color: var(--color-accent);">Cookies</a>
+      </p>
+      <p>&copy; 2026 MpCamperRent. Todos los derechos reservados.</p>
+    </div></div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/validacion.js"></script>
+  <script src="js/reserva.js"></script>
+  <script src="js/pago.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (async function () {
+      var disabledRanges = [];
+      try {
+        var res = await fetch((window.API_BASE || '') + '/api/disponibilidad');
+        if (res.ok) disabledRanges = await res.json();
+      } catch (e) { /* servidor no disponible, continúa sin bloqueo */ }
+
+      var today = new Date().toISOString().split('T')[0];
+
+      var fromPicker = flatpickr('#bookDateFrom', {
+        locale: 'es',
+        minDate: today,
+        dateFormat: 'Y-m-d',
+        disable: disabledRanges,
+        onChange: function (dates) {
+          if (dates[0]) {
+            var next = new Date(dates[0]);
+            next.setDate(next.getDate() + 1);
+            toPicker.set('minDate', next);
+            if (toPicker.selectedDates[0] && toPicker.selectedDates[0] <= dates[0]) {
+              toPicker.clear();
+            }
+          }
+        },
+      });
+
+      var toPicker = flatpickr('#bookDateTo', {
+        locale: 'es',
+        minDate: today,
+        dateFormat: 'Y-m-d',
+        disable: disabledRanges,
+      });
+    })();
+  </script>
+</body>
+</html>

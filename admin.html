@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — MpCamperRent</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <style>
+    body { background: var(--color-bg-alt); }
+    .admin-wrap { max-width: 900px; margin: 0 auto; padding: var(--space-3xl) var(--space-xl); }
+    .admin-card { background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: var(--space-2xl); margin-bottom: var(--space-xl); }
+    .booking-row { display: flex; align-items: center; gap: var(--space-lg); padding: var(--space-md) 0; border-bottom: 1px solid var(--color-border-light); }
+    .booking-row:last-child { border-bottom: none; }
+    .booking-dates { font-weight: 600; font-size: var(--text-sm); color: var(--color-primary-dark); min-width: 200px; }
+    .booking-label { flex: 1; font-size: var(--text-sm); color: var(--color-text-secondary); }
+    .btn-delete { background: none; border: 1.5px solid #e53e3e; color: #e53e3e; border-radius: var(--radius-sm); padding: 6px 12px; font-size: var(--text-xs); cursor: pointer; font-weight: 600; transition: all 0.15s; }
+    .btn-delete:hover { background: #e53e3e; color: white; }
+    .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .login-card { background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--space-3xl); width: 100%; max-width: 400px; text-align: center; }
+    .empty-state { text-align: center; padding: var(--space-2xl); color: var(--color-text-light); font-size: var(--text-sm); }
+    #adminPanel { display: none; }
+    #loginPanel { display: flex; }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="loginPanel" class="login-wrap">
+    <div class="login-card">
+      <div style="width: 64px; height: 64px; background: rgba(27,58,45,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-xl);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B3A2D" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <h2 style="margin-bottom: var(--space-sm);">Panel de administración</h2>
+      <p style="font-size: var(--text-sm); color: var(--color-text-light); margin-bottom: var(--space-2xl);">MpCamperRent — Gestión de reservas</p>
+      <div class="form-group" style="text-align: left;">
+        <label class="form-label" for="adminPassword">Contraseña</label>
+        <input type="password" class="form-input" id="adminPassword" placeholder="Tu contraseña de administrador">
+      </div>
+      <button class="btn btn--primary btn--lg btn--full" id="loginBtn" onclick="doLogin()" style="margin-top: var(--space-lg);">Entrar</button>
+      <p id="loginError" style="display:none; color:#e53e3e; font-size: var(--text-sm); margin-top: var(--space-md);">Contraseña incorrecta</p>
+    </div>
+  </div>
+
+  <!-- PANEL ADMIN -->
+  <div id="adminPanel">
+    <nav style="background: var(--color-primary); padding: var(--space-lg) 0;">
+      <div style="max-width: 900px; margin: 0 auto; padding: 0 var(--space-xl); display: flex; align-items: center; justify-content: space-between;">
+        <a href="index.html" class="nav__logo" aria-label="MpCamperRent — Inicio">
+        <img src="assets/logo-light.svg" alt="MpCamperRent" class="nav__logo__img" style="height: 38px;">
+      </a>
+        <span style="color: rgba(250,247,242,0.7); font-size: var(--text-sm);">Panel de administración</span>
+        <button class="btn btn--outline btn--sm" onclick="logout()" style="border-color: rgba(250,247,242,0.4); color: rgba(250,247,242,0.8);">Cerrar sesión</button>
+      </div>
+    </nav>
+
+    <div class="admin-wrap">
+      <h1 style="margin-bottom: var(--space-xs);">Gestión de reservas</h1>
+      <p style="color: var(--color-text-secondary); margin-bottom: var(--space-3xl);">Marca los períodos en que la autocaravana está reservada. Esas fechas aparecerán bloqueadas en el formulario de reserva.</p>
+
+      <!-- Formulario añadir reserva -->
+      <div class="admin-card">
+        <h3 style="margin-bottom: var(--space-xl);">Añadir período reservado</h3>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 2fr auto; gap: var(--space-md); align-items: end;">
+          <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="newFrom">Fecha inicio</label>
+            <input type="date" class="form-input" id="newFrom">
+          </div>
+          <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="newTo">Fecha fin</label>
+            <input type="date" class="form-input" id="newTo">
+          </div>
+          <div class="form-group" style="margin: 0;">
+            <label class="form-label" for="newLabel">Nota (opcional)</label>
+            <input type="text" class="form-input" id="newLabel" placeholder="Ej: Reserva de Juan García">
+          </div>
+          <button class="btn btn--accent btn--lg" onclick="addBooking()" style="white-space: nowrap;">Bloquear fechas</button>
+        </div>
+        <p id="addError" style="display:none; color:#e53e3e; font-size: var(--text-sm); margin-top: var(--space-md);"></p>
+      </div>
+
+      <!-- Lista de reservas -->
+      <div class="admin-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-xl);">
+          <h3 style="margin: 0;">Períodos bloqueados</h3>
+          <span id="bookingCount" style="font-size: var(--text-sm); color: var(--color-text-light);">Cargando...</span>
+        </div>
+        <div id="bookingsList">
+          <div class="empty-state">Cargando reservas...</div>
+        </div>
+      </div>
+
+      <p style="text-align: center; font-size: var(--text-xs); color: var(--color-text-light);">
+        Los cambios se guardan automáticamente en el servidor y se reflejan en tiempo real en el formulario de reserva.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    var adminToken = sessionStorage.getItem('mp_admin_token') || '';
+
+    // Si ya hay token guardado, intentar cargar directamente
+    if (adminToken) tryLoadAdmin();
+
+    document.getElementById('adminPassword').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') doLogin();
+    });
+
+    async function doLogin() {
+      var pass = document.getElementById('adminPassword').value.trim();
+      if (!pass) return;
+      var btn = document.getElementById('loginBtn');
+      btn.disabled = true;
+      btn.textContent = 'Verificando...';
+
+      var res = await fetch('/api/admin/reservas', {
+        headers: { 'Authorization': 'Bearer ' + pass }
+      });
+
+      if (res.ok) {
+        adminToken = pass;
+        sessionStorage.setItem('mp_admin_token', adminToken);
+        showAdmin(await res.json());
+      } else {
+        document.getElementById('loginError').style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Entrar';
+      }
+    }
+
+    async function tryLoadAdmin() {
+      var res = await fetch('/api/admin/reservas', {
+        headers: { 'Authorization': 'Bearer ' + adminToken }
+      });
+      if (res.ok) {
+        showAdmin(await res.json());
+      } else {
+        adminToken = '';
+        sessionStorage.removeItem('mp_admin_token');
+      }
+    }
+
+    function showAdmin(bookings) {
+      document.getElementById('loginPanel').style.display = 'none';
+      document.getElementById('adminPanel').style.display = 'block';
+      // Set min date for new booking inputs
+      var today = new Date().toISOString().split('T')[0];
+      document.getElementById('newFrom').setAttribute('min', today);
+      document.getElementById('newTo').setAttribute('min', today);
+      renderBookings(bookings);
+    }
+
+    function renderBookings(bookings) {
+      var list = document.getElementById('bookingsList');
+      var count = document.getElementById('bookingCount');
+
+      count.textContent = bookings.length === 0 ? 'Sin períodos bloqueados' :
+        bookings.length + ' período' + (bookings.length !== 1 ? 's' : '') + ' bloqueado' + (bookings.length !== 1 ? 's' : '');
+
+      if (bookings.length === 0) {
+        list.innerHTML = '<div class="empty-state">No hay ningún período bloqueado.<br>Usa el formulario de arriba para añadir uno.</div>';
+        return;
+      }
+
+      // Ordenar por fecha de inicio
+      bookings.sort(function(a, b) { return new Date(a.from) - new Date(b.from); });
+
+      list.innerHTML = bookings.map(function(b) {
+        return '<div class="booking-row">' +
+          '<div class="booking-dates">' + formatDate(b.from) + ' → ' + formatDate(b.to) + '</div>' +
+          '<div class="booking-label">' + (b.label ? escapeHtml(b.label) : '<em style="color:var(--color-text-light)">Sin nota</em>') + '</div>' +
+          '<button class="btn-delete" onclick="deleteBooking(\'' + b.id + '\')">Eliminar</button>' +
+          '</div>';
+      }).join('');
+    }
+
+    async function addBooking() {
+      var from = document.getElementById('newFrom').value;
+      var to = document.getElementById('newTo').value;
+      var label = document.getElementById('newLabel').value.trim();
+      var errEl = document.getElementById('addError');
+      errEl.style.display = 'none';
+
+      if (!from || !to) { errEl.textContent = 'Selecciona las dos fechas.'; errEl.style.display = 'block'; return; }
+      if (new Date(to) < new Date(from)) { errEl.textContent = 'La fecha fin debe ser posterior al inicio.'; errEl.style.display = 'block'; return; }
+
+      var res = await fetch('/api/admin/reserva', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + adminToken },
+        body: JSON.stringify({ from, to, label }),
+      });
+
+      if (res.ok) {
+        document.getElementById('newFrom').value = '';
+        document.getElementById('newTo').value = '';
+        document.getElementById('newLabel').value = '';
+        await reloadBookings();
+      } else {
+        var data = await res.json();
+        errEl.textContent = data.error || 'Error al guardar.';
+        errEl.style.display = 'block';
+      }
+    }
+
+    async function deleteBooking(id) {
+      if (!confirm('¿Eliminar este período bloqueado?')) return;
+      await fetch('/api/admin/reserva/' + id, {
+        method: 'DELETE',
+        headers: { 'Authorization': 'Bearer ' + adminToken },
+      });
+      await reloadBookings();
+    }
+
+    async function reloadBookings() {
+      var res = await fetch('/api/admin/reservas', { headers: { 'Authorization': 'Bearer ' + adminToken } });
+      if (res.ok) renderBookings(await res.json());
+    }
+
+    function logout() {
+      sessionStorage.removeItem('mp_admin_token');
+      adminToken = '';
+      document.getElementById('loginPanel').style.display = 'flex';
+      document.getElementById('adminPanel').style.display = 'none';
+      document.getElementById('adminPassword').value = '';
+      document.getElementById('loginError').style.display = 'none';
+      var btn = document.getElementById('loginBtn');
+      btn.disabled = false;
+      btn.textContent = 'Entrar';
+    }
+
+    function formatDate(str) {
+      if (!str) return '';
+      return new Date(str + 'T12:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    function escapeHtml(str) {
+      var d = document.createElement('div');
+      d.appendChild(document.createTextNode(str));
+      return d.innerHTML;
+    }
+  </script>
+</body>
+</html>

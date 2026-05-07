@@ -1,0 +1,160 @@
+/* ============================================
+   VANROAD - Responsive / Media Queries
+   Breakpoints: 768px (tablet), 480px (móvil)
+   ============================================ */
+
+/* --- Tablet (hasta 1024px) --- */
+@media (max-width: 1024px) {
+  :root {
+    --text-5xl: 2.75rem;
+    --text-4xl: 2.25rem;
+    --text-3xl: 1.75rem;
+  }
+
+  .grid--4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .search-bar {
+    flex-wrap: wrap;
+  }
+
+  .search-bar__field {
+    flex: 1 1 45%;
+    border-right: none;
+  }
+
+  .search-bar__btn {
+    flex: 1 1 100%;
+    margin-left: 0;
+    margin-top: var(--space-sm);
+  }
+}
+
+/* --- Tablet vertical / Móvil grande (hasta 768px) --- */
+@media (max-width: 768px) {
+  :root {
+    --text-5xl: 2.25rem;
+    --text-4xl: 1.85rem;
+    --text-3xl: 1.5rem;
+    --container-padding: 1.25rem;
+  }
+
+  .section {
+    padding: var(--space-3xl) 0;
+  }
+
+  /* Nav móvil */
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 350px;
+    height: 100vh;
+    background: var(--color-primary-dark);
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-2xl);
+    padding: var(--space-3xl);
+    transition: right var(--transition-slow);
+  }
+
+  .nav__links.is-open {
+    right: 0;
+  }
+
+  .nav__links .nav__link {
+    color: var(--color-text-inverse);
+    font-size: var(--text-lg);
+  }
+
+  /* Grids */
+  .grid--2,
+  .grid--3 {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* Footer */
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+  }
+
+  /* Stepper */
+  .stepper__label {
+    display: none;
+  }
+
+  .stepper__line {
+    width: 30px;
+  }
+
+  /* Search bar */
+  .search-bar {
+    flex-direction: column;
+    padding: var(--space-md);
+  }
+
+  .search-bar__field {
+    flex: 1 1 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--color-border-light);
+    padding: var(--space-md);
+  }
+
+  .search-bar__field:last-of-type {
+    border-bottom: none;
+  }
+
+  /* Vehicle card */
+  .vehicle-card__img {
+    height: 200px;
+  }
+
+  /* Price summary no sticky en móvil */
+  .price-summary {
+    position: static;
+  }
+}
+
+/* --- Móvil (hasta 480px) --- */
+@media (max-width: 480px) {
+  :root {
+    --text-5xl: 1.85rem;
+    --text-4xl: 1.5rem;
+    --container-padding: 1rem;
+  }
+
+  .btn--lg {
+    padding: 14px 28px;
+    font-size: var(--text-sm);
+  }
+
+  .vehicle-card__specs {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .testimonial-card {
+    padding: var(--space-lg);
+  }
+}
