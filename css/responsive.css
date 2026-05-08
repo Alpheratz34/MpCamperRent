@@ -76,6 +76,7 @@
   .nav__links .nav__link {
     color: var(--color-text-inverse);
     font-size: var(--text-lg);
+    text-align: center;
   }
 
   /* Grids */
