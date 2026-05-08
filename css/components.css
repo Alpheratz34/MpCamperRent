@@ -18,7 +18,7 @@
 }
 
 .nav.is-scrolled {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(15, 34, 25, 0.97);
   backdrop-filter: blur(12px);
   padding: var(--space-md) 0;
   box-shadow: var(--shadow-sm);
@@ -56,17 +56,11 @@
   transform: scale(1.04);
 }
 
-/* Por defecto solo se ve uno de los logos.
-   En el index, cuando el nav es transparente (sobre el hero verde oscuro)
-   se muestra la versión clara; al hacer scroll, la versión normal. */
 .nav__logo__img--dark { display: none; }
 .nav__logo__img--light { display: block; }
 
-.nav.is-scrolled .nav__logo__img--light { display: none; }
-.nav.is-scrolled .nav__logo__img--dark { display: block; }
-
 .nav.is-scrolled .nav__logo {
-  color: var(--color-primary-dark);
+  color: var(--color-text-inverse);
 }
 
 .nav.is-scrolled .nav__logo__img {
@@ -112,7 +106,7 @@
 }
 
 .nav.is-scrolled .nav__link {
-  color: var(--color-text);
+  color: var(--color-text-inverse);
 }
 
 .nav__link:hover {
@@ -138,7 +132,7 @@
 }
 
 .nav.is-scrolled .nav__toggle span {
-  background: var(--color-text);
+  background: var(--color-text-inverse);
 }
 
 .nav__toggle.is-open span:nth-child(1) {
