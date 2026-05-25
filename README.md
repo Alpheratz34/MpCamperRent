@@ -1,26 +1,10 @@
-# 🚐 MpCamperRent — Alquiler de Autocaravana
+# MpCamperRent — Alquiler de Autocaravanas
 
 Web profesional para el alquiler de una autocaravana en Valdemoro (Madrid), con pagos seguros (Stripe + PayPal), formulario de reserva multi-paso, páginas legales completas y un logo único en SVG.
 
 ---
 
-## ✨ Novedades de esta versión
-
-- 🎨 **Logo único** dibujado en SVG (autocaravana con sol naciente y carretera). Hay dos versiones (`logo.svg` y `logo-light.svg`) para fondos claros y oscuros respectivamente. Favicon SVG incluido.
-- 🚐 **Autocaravana de 170 CV** (Ford Transit) — actualizado en todas las páginas.
-- 📍 **Recogida en Valdemoro, Madrid** — actualizado en home, reserva, contacto y JS.
-- 📜 **Páginas legales completas y funcionales**:
-  - `terminos.html` — Términos y condiciones del alquiler (índice navegable, 14 secciones, reservas no reembolsables)
-  - `privacidad.html` — Política de privacidad RGPD-compliant
-  - `cookies.html` — Política de cookies con tabla detallada
-- 💳 **Pagos funcionales**:
-  - Stripe Elements y PayPal SDK se cargan dinámicamente solo si están las claves
-  - Modo desarrollo robusto: validación con algoritmo de Luhn, formateo automático MM/AA y CVC, detección de marca (Visa/Mastercard/Amex/Discover)
-  - El backend ya estaba listo (`/api/stripe/create-payment-intent`, `/api/paypal/create-order`, `/api/paypal/capture-order`)
-
----
-
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 MpCamperRent/
@@ -58,7 +42,6 @@ MpCamperRent/
 │
 ├── server/
 │   ├── server.js           ← Backend Node.js/Express
-│   ├── .env.example        ← Plantilla de variables de entorno
 │   └── data/bookings.json  ← Persistencia de reservas bloqueadas
 │
 ├── package.json
@@ -68,17 +51,7 @@ MpCamperRent/
 
 ---
 
-## 🚀 Cómo empezar
-
-### Opción 1 — Solo frontend (modo desarrollo)
-
-Funciona sin servidor. El pago se simula tras validar la tarjeta con Luhn.
-
-1. Abre la carpeta en VS Code.
-2. Instala la extensión **Live Server**.
-3. Clic derecho en `index.html` → *Open with Live Server*.
-
-### Opción 2 — Con backend (pagos reales)
+## Pagos
 
 ```bash
 cd MpCamperRent
@@ -91,7 +64,7 @@ npm start
 
 ---
 
-## 💳 Activar pagos reales
+## Activar pagos
 
 ### 1. Stripe (tarjeta)
 
@@ -113,19 +86,8 @@ Una vez configuradas las claves en `js/config.js`, los SDKs (Stripe.js y PayPal 
 
 ---
 
-## 🎨 El logo
 
-El logo (`assets/logo.svg`) representa una autocaravana con el sol detrás y una carretera dibujada con las líneas en color dorado. Es 100 % SVG, escalable, ligero (≈ 2 KB) y coincide con la paleta del sitio:
-
-- Verde bosque (`#1B3A2D`) — color principal
-- Dorado arena (`#D4A853`) — color de acento
-- Crema (`#FAF7F2`) — fondo
-
-Aparece en el nav de todas las páginas (a la izquierda de los enlaces) y en el footer del index (versión `logo-light.svg` con texto crema sobre fondo oscuro).
-
----
-
-## 🔒 Seguridad
+## Seguridad
 
 - Datos de tarjeta tokenizados por Stripe (nunca llegan a tu servidor).
 - Validación doble: frontend (Luhn + regex) + backend.
@@ -137,20 +99,6 @@ Aparece en el nav de todas las páginas (a la izquierda de los enlaces) y en el 
 
 ---
 
-## ✅ Checklist para producción
-
-- [ ] Dominio propio con HTTPS (Cloudflare, Netlify, etc.)
-- [ ] Claves **LIVE** de Stripe (`sk_live_...`, `pk_live_...`)
-- [ ] Credenciales **live** de PayPal (`PAYPAL_MODE=live`)
-- [ ] `ALLOWED_ORIGINS` con tu dominio real
-- [ ] `ADMIN_TOKEN` aleatorio y seguro (`openssl rand -hex 32`)
-- [ ] Base de datos para reservas (sustituir `bookings.json`)
-- [ ] Servicio de email para confirmaciones (Mailgun, SendGrid, etc.)
-- [ ] Datos fiscales reales en términos y privacidad
-
----
-
-## 📞 Contacto
 
 - Web: <https://mpcamperrent.com>
 - Email: <mpcamperrent@gmail.com>
