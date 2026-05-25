@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="MpCamperRent — Alquiler de Autocaravana">
+  <defs>
+    <linearGradient id="ogBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E4332"/>
+      <stop offset="60%" stop-color="#1B3A2D"/>
+      <stop offset="100%" stop-color="#0F2219"/>
+    </linearGradient>
+    <linearGradient id="ogSun" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D4A853"/>
+      <stop offset="100%" stop-color="#E8C97A" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="ogIconClip">
+      <rect x="100" y="195" width="240" height="240" rx="48"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+
+  <!-- Decorative sun glow -->
+  <ellipse cx="600" cy="630" rx="500" ry="300" fill="#D4A853" opacity="0.07"/>
+  <ellipse cx="1100" cy="100" rx="280" ry="280" fill="#D4A853" opacity="0.05"/>
+
+  <!-- ── ICON (240×240, centered-left) ── -->
+  <rect x="100" y="195" width="240" height="240" rx="48" fill="#0F2219"/>
+  <g clip-path="url(#ogIconClip)">
+    <!-- Road -->
+    <rect x="100" y="351" width="240" height="84" fill="#0B1C13"/>
+    <!-- Road dashes -->
+    <rect x="124" y="372" width="27" height="7"  rx="3.5" fill="#D4A853" opacity="0.45"/>
+    <rect x="208" y="372" width="27" height="7"  rx="3.5" fill="#D4A853" opacity="0.45"/>
+    <rect x="292" y="372" width="27" height="7"  rx="3.5" fill="#D4A853" opacity="0.45"/>
+    <!-- Golden roof stripe -->
+    <rect x="115" y="249" width="210" height="12" rx="6" fill="#D4A853"/>
+    <!-- Hab body -->
+    <rect x="115" y="261" width="126" height="90" rx="6" fill="#FAF7F2"/>
+    <!-- Cab body -->
+    <polygon points="241,261 295,261 319,294 319,351 241,351" fill="#EDE9E0"/>
+    <!-- Windshield -->
+    <polygon points="247,264 293,264 317,294 247,294" fill="#2D7A5E" opacity="0.85"/>
+    <!-- Cab side window -->
+    <rect x="247" y="297" width="36" height="27" rx="4.5" fill="#2D7A5E" opacity="0.6"/>
+    <!-- Hab windows -->
+    <rect x="127" y="270" width="39" height="27" rx="4.5" fill="#2D7A5E"/>
+    <rect x="175" y="270" width="39" height="27" rx="4.5" fill="#2D7A5E"/>
+    <!-- Door -->
+    <rect x="178" y="297" width="33" height="48" rx="3" fill="#E5E1D5"/>
+    <circle cx="205" cy="321" r="5.4" fill="#D4A853"/>
+    <!-- Rear wheel -->
+    <circle cx="151" cy="351" r="22.5" fill="#0B1C13"/>
+    <circle cx="151" cy="351" r="12.6" fill="#D4A853"/>
+    <circle cx="151" cy="351" r="5.1"  fill="#0B1C13"/>
+    <!-- Front wheel -->
+    <circle cx="295" cy="351" r="22.5" fill="#0B1C13"/>
+    <circle cx="295" cy="351" r="12.6" fill="#D4A853"/>
+    <circle cx="295" cy="351" r="5.1"  fill="#0B1C13"/>
+  </g>
+
+  <!-- ── BRAND TEXT ── -->
+  <text x="400" y="295"
+        font-family="Georgia,'Times New Roman',serif"
+        font-size="88" font-weight="700" letter-spacing="-1"
+        fill="#FAF7F2">Mp<tspan fill="#D4A853">Camper</tspan><tspan fill="#FAF7F2">Rent</tspan></text>
+
+  <text x="403" y="345"
+        font-family="'Trebuchet MS','Segoe UI',Arial,sans-serif"
+        font-size="22" font-weight="500" letter-spacing="7"
+        fill="rgba(250,247,242,0.5)">ALQUILER · AVENTURA · LIBERTAD</text>
+
+  <!-- Divider -->
+  <rect x="400" y="375" width="720" height="1.5" fill="#D4A853" opacity="0.3"/>
+
+  <!-- Tagline / hook -->
+  <text x="400" y="435"
+        font-family="Georgia,'Times New Roman',serif"
+        font-size="36" fill="#FAF7F2" opacity="0.9">
+    Viaja sin límites. Vive sin prisas.
+  </text>
+
+  <!-- Features -->
+  <text x="403" y="490"
+        font-family="'Trebuchet MS','Segoe UI',Arial,sans-serif"
+        font-size="22" fill="#D4A853" letter-spacing="1">
+    Seguro incluido  ·  2 kayaks gratis  ·  Desde 139 €/día
+  </text>
+
+  <!-- URL hint -->
+  <text x="403" y="560"
+        font-family="'Trebuchet MS','Segoe UI',Arial,sans-serif"
+        font-size="18" fill="rgba(250,247,242,0.35)" letter-spacing="1">
+    mpcamperrent.com
+  </text>
+</svg>

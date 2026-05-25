@@ -94,6 +94,48 @@ function formatPrice(amount) {
   }).format(amount);
 }
 
+// --- Banner de cookies ---
+(function () {
+  var COOKIE_KEY = 'mpcr_cookies';
+  if (localStorage.getItem(COOKIE_KEY)) return;
+
+  var banner = document.createElement('div');
+  banner.id = 'cookieBanner';
+  banner.className = 'cookie-banner';
+  banner.setAttribute('role', 'dialog');
+  banner.setAttribute('aria-label', 'Aviso de cookies');
+  banner.innerHTML =
+    '<div class="cookie-banner__inner">' +
+      '<div class="cookie-banner__text">' +
+        '<strong>Usamos cookies</strong> para mejorar tu experiencia de navegación y analizar el tráfico de la web. ' +
+        'Puedes aceptarlas o rechazarlas. ' +
+        '<a href="cookies.html" class="cookie-banner__link">Más información</a>' +
+      '</div>' +
+      '<div class="cookie-banner__actions">' +
+        '<button id="cookieReject" class="cookie-banner__btn cookie-banner__btn--outline">Rechazar</button>' +
+        '<button id="cookieAccept" class="cookie-banner__btn cookie-banner__btn--accept">Aceptar cookies</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(banner);
+
+  setTimeout(function () { banner.classList.add('is-visible'); }, 400);
+
+  function hideBanner() {
+    banner.classList.remove('is-visible');
+    setTimeout(function () { banner.remove(); }, 450);
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', function () {
+    localStorage.setItem(COOKIE_KEY, 'accepted');
+    hideBanner();
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', function () {
+    localStorage.setItem(COOKIE_KEY, 'rejected');
+    hideBanner();
+  });
+})();
+
 // --- Utilidad: Calcular días entre dos fechas ---
 function daysBetween(date1, date2) {
   var d1 = new Date(date1);

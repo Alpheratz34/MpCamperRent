@@ -1,38 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" role="img" aria-label="MpCamperRent">
-  <!-- Versión para fondos oscuros (footer) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 80" role="img" aria-label="MpCamperRent">
+  <!--
+    Versión clara: texto en crema (#FAF7F2) — para fondos oscuros (nav, footer, hero)
+  -->
   <defs>
-    <linearGradient id="mpSkyDark" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#D4A853"/>
-      <stop offset="100%" stop-color="#E8C97A"/>
+    <linearGradient id="lgBgL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E4332"/>
+      <stop offset="100%" stop-color="#0F2219"/>
     </linearGradient>
+    <clipPath id="lgClipL">
+      <rect width="80" height="80" rx="16"/>
+    </clipPath>
   </defs>
 
-  <g transform="translate(4 8)">
-    <!-- Círculo de fondo en crema para que destaque -->
-    <circle cx="34" cy="34" r="32" fill="#FAF7F2"/>
-    <circle cx="34" cy="34" r="20" fill="url(#mpSkyDark)"/>
-
-    <rect x="6" y="52" width="56" height="3" fill="#1B3A2D"/>
-    <line x1="14" y1="53.5" x2="20" y2="53.5" stroke="#D4A853" stroke-width="1.2"/>
-    <line x1="28" y1="53.5" x2="34" y2="53.5" stroke="#D4A853" stroke-width="1.2"/>
-    <line x1="42" y1="53.5" x2="48" y2="53.5" stroke="#D4A853" stroke-width="1.2"/>
-
-    <g fill="#1B3A2D" stroke="#0F2219" stroke-width="1.2" stroke-linejoin="round">
-      <path d="M14 36 L14 30 Q14 28 16 28 L42 28 Q44 28 44 30 L44 24 Q44 22 46 22 L52 22 Q54 22 55 24 L58 36 L58 50 Q58 52 56 52 L16 52 Q14 52 14 50 Z"/>
-      <rect x="18" y="32" width="10" height="7" rx="1" fill="#2D5E47" stroke="none"/>
-      <rect x="31" y="34" width="7" height="13" rx="0.8" fill="#0F2219" stroke="none"/>
-      <line x1="36" y1="40" x2="36.4" y2="41" stroke="#D4A853" stroke-width="0.8"/>
-      <path d="M44 24 L52 24 Q53 24 53.4 25 L55.5 30 L44 30 Z" fill="#2D5E47" stroke="none"/>
-    </g>
-
-    <circle cx="22" cy="52" r="4" fill="#0F2219"/>
-    <circle cx="22" cy="52" r="1.6" fill="#D4A853"/>
-    <circle cx="50" cy="52" r="4" fill="#0F2219"/>
-    <circle cx="50" cy="52" r="1.6" fill="#D4A853"/>
+  <!-- ── ICONO ── -->
+  <rect width="80" height="80" rx="16" fill="url(#lgBgL)"/>
+  <g clip-path="url(#lgClipL)">
+    <rect x="0" y="52" width="80" height="28" fill="#0B1C13"/>
+    <rect x="8"  y="58" width="9" height="2.5" rx="1.2" fill="#D4A853" opacity="0.45"/>
+    <rect x="36" y="58" width="9" height="2.5" rx="1.2" fill="#D4A853" opacity="0.45"/>
+    <rect x="63" y="58" width="9" height="2.5" rx="1.2" fill="#D4A853" opacity="0.45"/>
+    <rect x="5" y="18" width="70" height="4" rx="2" fill="#D4A853"/>
+    <rect x="5" y="22" width="42" height="30" rx="2" fill="#FAF7F2"/>
+    <polygon points="47,22 66,22 74,33 74,52 47,52" fill="#EDE9E0"/>
+    <polygon points="49,23 65,23 73,33 49,33" fill="#2D7A5E" opacity="0.85"/>
+    <rect x="49" y="34" width="12" height="9" rx="1.5" fill="#2D7A5E" opacity="0.6"/>
+    <rect x="9"  y="26" width="13" height="9" rx="1.5" fill="#2D7A5E"/>
+    <rect x="25" y="26" width="13" height="9" rx="1.5" fill="#2D7A5E"/>
+    <rect x="28" y="36" width="11" height="16" rx="1" fill="#E5E1D5"/>
+    <circle cx="36.5" cy="44" r="1.8" fill="#D4A853"/>
+    <circle cx="17" cy="52" r="7.5" fill="#0B1C13"/>
+    <circle cx="17" cy="52" r="4.2"  fill="#D4A853"/>
+    <circle cx="17" cy="52" r="1.7"  fill="#0B1C13"/>
+    <circle cx="62" cy="52" r="7.5" fill="#0B1C13"/>
+    <circle cx="62" cy="52" r="4.2"  fill="#D4A853"/>
+    <circle cx="62" cy="52" r="1.7"  fill="#0B1C13"/>
   </g>
 
-  <g transform="translate(82 0)" font-family="'DM Serif Display', Georgia, serif">
-    <text x="0" y="42" font-size="30" fill="#FAF7F2" letter-spacing="-0.5">Mp<tspan fill="#D4A853">CamperRent</tspan></text>
-    <text x="2" y="60" font-family="'Outfit', 'Segoe UI', sans-serif" font-size="9" fill="rgba(250,247,242,0.6)" letter-spacing="3" font-weight="500">ALQUILER · AVENTURA · LIBERTAD</text>
-  </g>
+  <!-- ── TEXTO ── -->
+  <text x="92" y="47"
+        font-family="Georgia,'DM Serif Display','Times New Roman',serif"
+        font-size="29" font-weight="700" letter-spacing="-0.4"
+        fill="#FAF7F2">Mp<tspan fill="#D4A853">Camper</tspan><tspan fill="#FAF7F2">Rent</tspan></text>
+  <text x="94" y="64"
+        font-family="'Trebuchet MS','Outfit','Segoe UI',Arial,sans-serif"
+        font-size="8" font-weight="500" letter-spacing="3.5"
+        fill="rgba(250,247,242,0.5)">ALQUILER · AVENTURA · LIBERTAD</text>
 </svg>
