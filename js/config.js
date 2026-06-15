@@ -23,7 +23,7 @@ var API_BASE = (function () {
 // Obtén la tuya en: https://dashboard.stripe.com/apikeys
 // Mientras la dejes con "TU_CLAVE_PUBLICABLE_AQUI", el sistema funciona en
 // modo desarrollo (validación local + simulación de pago).
-var STRIPE_PUBLIC_KEY = 'pk_test_TU_CLAVE_PUBLICABLE_AQUI';
+var STRIPE_PUBLIC_KEY = 'pk_live_51TiL8xCr3Ckeq3cfZoYXf3KPTLo3K6RAn0YfKZV0B1z4D6l7wA5EoIgpA9qTkop2qh21JB3B1RTgHuF65hzVeKLN00h42KluE1';
 
 // --- PayPal (Client ID PÚBLICO) ---
 // Obtén el tuyo en: https://developer.paypal.com/dashboard/applications
