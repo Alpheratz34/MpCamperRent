@@ -47,8 +47,10 @@
 
 .nav__logo__img {
   height: 44px;
-  width: auto;
+  width: 44px;
   display: block;
+  border-radius: 50%;
+  object-fit: cover;
   transition: transform var(--transition-base), opacity var(--transition-base);
 }
 
