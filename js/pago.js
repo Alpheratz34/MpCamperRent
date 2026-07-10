@@ -179,9 +179,7 @@
     if (!container) return;
 
     try {
-      // Limpiar el botón mock antes de renderizar el real
       container.innerHTML = '';
-      paypalRendered = true;
 
       paypal.Buttons({
         style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay' },
@@ -224,7 +222,11 @@
         onCancel: function () {
           showToastSafe('Pago cancelado por el usuario.', 'warning');
         },
-      }).render('#paypal-button-container');
+      }).render('#paypal-button-container').then(function () {
+        paypalRendered = true;
+        var confirmBtn = $('confirmPayBtn');
+        if (confirmBtn) confirmBtn.style.display = 'none';
+      });
     } catch (err) {
       console.error('[MpCamperRent] Error inicializando PayPal:', err);
       paypalRendered = false;
@@ -254,9 +256,8 @@
       paypalForm.style.display = 'block';
       cardBtn.className = 'btn btn--outline-dark';
       paypalBtn.className = 'btn btn--primary';
-      // Si tenemos PayPal SDK real, ocultamos el botón "Confirmar y pagar"
-      // porque el propio botón de PayPal hace el submit
-      confirmBtn.style.display = (typeof paypal !== 'undefined' && paypalRendered) ? 'none' : '';
+      confirmBtn.style.display = paypalRendered ? 'none' : '';
+      initPayPal();
     }
   }
 
@@ -442,6 +443,7 @@
   window.selectPaymentMethod = selectPaymentMethod;
   window.processPayment = processPayment;
   window.generateBookingRef = generateBookingRef;
+  window.initPayPal = initPayPal;
 
   // ---------- Inicialización al cargar la página ----------
   document.addEventListener('DOMContentLoaded', function () {

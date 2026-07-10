@@ -53,6 +53,12 @@ window.PAYPAL_CLIENT_ID = PAYPAL_CLIENT_ID;
 
   // PayPal SDK
   if (PAYPAL_CLIENT_ID && !/TU_CLIENT_ID/.test(PAYPAL_CLIENT_ID)) {
-    loadScript('https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) + '&currency=EUR&intent=capture');
+    var pp = document.createElement('script');
+    pp.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(PAYPAL_CLIENT_ID) + '&currency=EUR&intent=capture';
+    pp.async = true;
+    pp.onload = function () {
+      if (typeof window.initPayPal === 'function') window.initPayPal();
+    };
+    document.head.appendChild(pp);
   }
 })();
