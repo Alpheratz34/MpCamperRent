@@ -181,12 +181,20 @@ app.post('/api/stripe/webhook', express.raw({ type: 'application/json' }), (req,
 const PAYPAL_API = process.env.PAYPAL_MODE === 'live' ? 'https://api-m.paypal.com' : 'https://api-m.sandbox.paypal.com';
 
 async function getPayPalAccessToken() {
+  if (!process.env.PAYPAL_CLIENT_ID || !process.env.PAYPAL_CLIENT_SECRET) {
+    throw new Error('Credenciales PayPal no configuradas');
+  }
   const auth = Buffer.from(`${process.env.PAYPAL_CLIENT_ID}:${process.env.PAYPAL_CLIENT_SECRET}`).toString('base64');
   const response = await fetch(`${PAYPAL_API}/v1/oauth2/token`, {
     method: 'POST', headers: { 'Authorization': `Basic ${auth}`, 'Content-Type': 'application/x-www-form-urlencoded' },
     body: 'grant_type=client_credentials',
   });
-  return (await response.json()).access_token;
+  const data = await response.json();
+  if (!response.ok || !data.access_token) {
+    console.error('[MpCamperRent] Error auth PayPal:', data);
+    throw new Error('No se pudo obtener token PayPal');
+  }
+  return data.access_token;
 }
 
 app.post('/api/paypal/create-order', paymentLimiter, async (req, res) => {
@@ -196,11 +204,18 @@ app.post('/api/paypal/create-order', paymentLimiter, async (req, res) => {
     const accessToken = await getPayPalAccessToken();
     const response = await fetch(`${PAYPAL_API}/v2/checkout/orders`, {
       method: 'POST', headers: { 'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ intent: 'CAPTURE', purchase_units: [{ reference_id: bookingRef, amount: { currency_code: currency || 'EUR', value: amount.toFixed(2) }, description: `MpCamperRent ${bookingRef}` }] }),
+      body: JSON.stringify({ intent: 'CAPTURE', purchase_units: [{ reference_id: bookingRef, amount: { currency_code: currency || 'EUR', value: Number(amount).toFixed(2) }, description: `MpCamperRent ${bookingRef}` }] }),
     });
     const order = await response.json();
+    if (!response.ok || !order.id) {
+      console.error('[MpCamperRent] Error crear orden PayPal:', order);
+      return res.status(502).json({ error: 'Error al crear orden PayPal.' });
+    }
     res.json({ orderID: order.id });
-  } catch (error) { res.status(500).json({ error: 'Error PayPal.' }); }
+  } catch (error) {
+    console.error('[MpCamperRent] Error PayPal create-order:', error.message);
+    res.status(500).json({ error: 'Error PayPal.' });
+  }
 });
 
 app.post('/api/paypal/capture-order', paymentLimiter, async (req, res) => {
@@ -211,8 +226,17 @@ app.post('/api/paypal/capture-order', paymentLimiter, async (req, res) => {
     const response = await fetch(`${PAYPAL_API}/v2/checkout/orders/${orderID}/capture`, {
       method: 'POST', headers: { 'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json' },
     });
-    res.json(await response.json());
-  } catch (error) { res.status(500).json({ error: 'Error capturando pago.' }); }
+    const capture = await response.json();
+    if (!response.ok) {
+      console.error('[MpCamperRent] Error capturar PayPal:', capture);
+      return res.status(502).json({ error: 'Error al capturar el pago.' });
+    }
+    console.log(`[MpCamperRent] ✅ Pago PayPal: ${orderID} — ${capture.status}`);
+    res.json(capture);
+  } catch (error) {
+    console.error('[MpCamperRent] Error PayPal capture-order:', error.message);
+    res.status(500).json({ error: 'Error capturando pago.' });
+  }
 });
 
 // --- Inicio ---

@@ -7,7 +7,7 @@ var currentStep = 1;
 var bookingData = {
   vehicleName: 'McLouis MC4 Slim 331',
   pricePerDay: 139,
-  pickup: 'Valdemoro, Madrid',
+  pickup: 'Calle Portugal, 73, Valdemoro, Madrid',
 };
 // Exponer al ámbito global para que el módulo de pagos pueda acceder
 window.bookingData = bookingData;
@@ -117,7 +117,7 @@ function updatePriceSummary() {
   html += '<div style="margin-top: var(--space-md); padding: var(--space-md); background: var(--color-bg-alt); border-radius: var(--radius-md); font-size: var(--text-sm);">';
   html += '<p><strong>Recogida:</strong> ' + formatDate(bookingData.dateFrom) + '</p>';
   html += '<p><strong>Devolución:</strong> ' + formatDate(bookingData.dateTo) + '</p>';
-  html += '<p><strong>Lugar:</strong> Valdemoro, Madrid</p>';
+  html += '<p><strong>Lugar:</strong> Calle Portugal, 73, Valdemoro, Madrid</p>';
   html += '</div>';
   html += '<div style="margin-top: var(--space-sm); padding: var(--space-md); background: rgba(212,168,83,0.1); border: 1.5px solid rgba(212,168,83,0.4); border-radius: var(--radius-md); font-size: var(--text-xs); color: var(--color-text-secondary);">';
   html += '<strong style="color: var(--color-text);">Fianza: 900€</strong> — se abona en la recogida y se devuelve al retorno.';

@@ -16,7 +16,7 @@ var API_BASE = (function () {
   var h = window.location.hostname;
   if (h === 'localhost' || h === '127.0.0.1' || h === '') return '';
   // ⬇️ Sustituye por tu URL real una vez desplegado en Railway / Render / Vercel
-  return 'https://TU-APP.up.railway.app';
+  return 'https://mpcamperrent-production.up.railway.app';
 })();
 
 // --- Stripe (clave PÚBLICA, empieza por pk_test_ o pk_live_) ---
@@ -28,7 +28,7 @@ var STRIPE_PUBLIC_KEY = 'pk_live_51TiL8xCr3Ckeq3cfZoYXf3KPTLo3K6RAn0YfKZV0B1z4D6
 // --- PayPal (Client ID PÚBLICO) ---
 // Obtén el tuyo en: https://developer.paypal.com/dashboard/applications
 // Mientras lo dejes con "TU_CLIENT_ID_AQUI", se usa el botón mock.
-var PAYPAL_CLIENT_ID = 'TU_CLIENT_ID_AQUI';
+var PAYPAL_CLIENT_ID = 'AXK7lbAtx42okvZ2yvk5V-hNnBUJDTjxyA7RxS_o1ufhGmIjIOfB40siT_1DIYZ4wYjLaJxx7-5qEqbn';
 
 // --- Exponer al ámbito global para que otros scripts puedan acceder ---
 window.API_BASE = API_BASE;
